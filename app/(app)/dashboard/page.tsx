@@ -3,7 +3,7 @@ import { GoalSetter } from "@/components/goal-setter";
 import { MoodTracker } from "@/components/mood-tracker";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Sparkles, ThumbsUp, Brain } from "lucide-react";
+import { Sparkles, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function DashboardPage() {
@@ -57,20 +57,16 @@ export default function DashboardPage() {
               </Link>
             </Card>
 
-            <Card className="p-4 bg-secondary/10 border-secondary/20">
-              <h2 className="font-medium mb-2">Quick Tools</h2>
-              <div className="space-y-2">
-                <Link href="/pep-talk" passHref>
-                  <Button variant="outline" className="w-full justify-start">
-                    <ThumbsUp className="mr-2 h-4 w-4" /> Need a Pep Talk?
-                  </Button>
-                </Link>
-                <Link href="/reset" passHref>
-                  <Button variant="outline" className="w-full justify-start">
-                    <Brain className="mr-2 h-4 w-4" /> Mental Reset
-                  </Button>
-                </Link>
-              </div>
+            <Card className="p-4 bg-primary/10 border-primary/20">
+              <h2 className="font-medium mb-2">Quick Chat</h2>
+              <p className="text-sm text-muted-foreground mb-3">
+                Need to talk something out? Jump into a chat.
+              </p>
+              <Link href="/chat" passHref>
+                <Button variant="outline" className="w-full justify-start">
+                  <MessageCircle className="mr-2 h-4 w-4" /> Talk it Out
+                </Button>
+              </Link>
             </Card>
           </div>
 
