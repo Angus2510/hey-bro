@@ -23,7 +23,7 @@ export default function ChatPage() {
         },
       ]);
     }
-  }, [messages.length]);
+  }, [messages.length, settings.tone]);
 
   const handleSendMessage = async (content: string) => {
     // Add user message to the chat

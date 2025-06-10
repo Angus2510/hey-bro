@@ -1,12 +1,9 @@
 "use client";
-import { MoodSelector } from "@/components/mood-selector";
 import { GoalSetter } from "@/components/goal-setter";
 import { MoodTracker } from "@/components/mood-tracker";
-import { PepTalk } from "@/components/pep-talk";
-import { MentalReset } from "@/components/mental-reset";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { MessageCircle, Sparkles } from "lucide-react";
+import { Sparkles, ThumbsUp, Brain } from "lucide-react";
 import Link from "next/link";
 
 export default function DashboardPage() {
@@ -49,25 +46,31 @@ export default function DashboardPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <Card className="p-4 bg-primary/10 border-primary/20">
               <h2 className="font-medium mb-2">Daily Check-in</h2>
+              {/* Placeholder for MoodSelector or link to check-in page */}
               <p className="text-sm text-muted-foreground mb-3">
                 How are you feeling today?
               </p>
-              <Button asChild>
-                <Link href="/check-in">Check In Now</Link>
-              </Button>
+              <Link href="/check-in" passHref>
+                <Button variant="outline" className="w-full">
+                  Go to Check-in
+                </Button>
+              </Link>
             </Card>
 
-            <Card className="p-4 bg-muted/50">
-              <h2 className="font-medium mb-2">Need to Talk?</h2>
-              <p className="text-sm text-muted-foreground mb-3">
-                The HeyBro AI chatbot is here for you 24/7.
-              </p>
-              <Button variant="outline" asChild>
-                <Link href="/chat">
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Start Chatting
+            <Card className="p-4 bg-secondary/10 border-secondary/20">
+              <h2 className="font-medium mb-2">Quick Tools</h2>
+              <div className="space-y-2">
+                <Link href="/pep-talk" passHref>
+                  <Button variant="outline" className="w-full justify-start">
+                    <ThumbsUp className="mr-2 h-4 w-4" /> Need a Pep Talk?
+                  </Button>
                 </Link>
-              </Button>
+                <Link href="/reset" passHref>
+                  <Button variant="outline" className="w-full justify-start">
+                    <Brain className="mr-2 h-4 w-4" /> Mental Reset
+                  </Button>
+                </Link>
+              </div>
             </Card>
           </div>
 

@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -70,7 +68,7 @@ export function PepTalk({ onClose }: PepTalkProps) {
             animate={{ opacity: 1, y: 0 }}
             className="text-center text-lg font-medium"
           >
-            "{currentPepTalk}"
+            {currentPepTalk}
           </motion.div>
         )}
       </div>

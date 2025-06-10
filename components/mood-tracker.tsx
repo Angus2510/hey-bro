@@ -20,6 +20,14 @@ interface MoodEntry {
   note?: string;
 }
 
+// Structure of the data passed to the chart
+interface ChartDataEntry {
+  date: string; // Formatted date string for XAxis
+  value: number; // Numerical value of the mood
+  mood: MoodType; // Original mood type
+  fullDate: Date; // Original date object for sorting
+}
+
 interface MoodTrackerProps {
   moodHistory: MoodEntry[];
   timeFrame?: "week" | "month";
@@ -81,13 +89,37 @@ export function MoodTracker({
     })
     .sort((a, b) => a.fullDate.getTime() - b.fullDate.getTime());
 
-  const CustomTooltip = ({ active, payload }: any) => {
+  // Define types for Recharts Tooltip props
+  interface TooltipPayload {
+    name: string; // dataKey (e.g., "value")
+    value: number; // The actual value for this dataKey
+    payload: ChartDataEntry; // The full data object for this point
+    color?: string; // Color of the bar/line
+    dataKey?: string;
+    formatter?: (
+      value: number,
+      name: string,
+      entry: TooltipPayload,
+      index: number
+    ) => React.ReactNode;
+    type?: string;
+    unit?: string;
+  }
+
+  interface CustomTooltipProps {
+    active?: boolean;
+    payload?: TooltipPayload[];
+  }
+
+  const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
     if (active && payload && payload.length) {
-      const { date, mood } = payload[0].payload;
+      // The actual data point is in payload[0].payload
+      const dataPoint = payload[0].payload;
       return (
         <div className="bg-card border rounded p-2 shadow-md">
-          <p className="text-sm font-medium">{date}</p>
-          <p className="text-sm capitalize">{mood}</p>
+          <p className="text-sm font-medium">{dataPoint.date}</p>{" "}
+          {/* Or use label if preferred for the date */}
+          <p className="text-sm capitalize">{dataPoint.mood}</p>
         </div>
       );
     }
